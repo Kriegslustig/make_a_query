@@ -25,7 +25,7 @@
 	}
 
 	function maq_add_settings_page_callback () {
-		echo '<p>"Template Directory" requires a trailing slash</p>'
+		echo '<p>"Template Directory" requires a trailing slash</p>';
 	}
 
 	function maq_add_setting_templates_directory_callback () {

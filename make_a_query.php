@@ -39,6 +39,7 @@ function add_sc_make_a_query ($attributes) {
 	// Look for a valid template_file
 	$template_file = maq_eval_template_path($attributes);
 	$returnString = include $template_file;
+	return $returnString;
 }
 add_shortcode('make_a_query', 'add_sc_make_a_query');
 
