@@ -1,4 +1,11 @@
 <?php
+
+/*
+	This adds a setting to the "writing" page
+	The setting's called "Template Directory"
+	It should point to where the templates for posts are
+ */
+
 	add_action('admin_init', 'maq_add_settings_page');
 	function maq_add_settings_page () {
 		add_settings_section(
@@ -18,6 +25,7 @@
 	}
 
 	function maq_add_settings_page_callback () {
+		echo '<p>"Template Directory" requires a trailing slash</p>'
 	}
 
 	function maq_add_setting_templates_directory_callback () {
