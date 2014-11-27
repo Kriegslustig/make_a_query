@@ -20,31 +20,40 @@ function add_sc_make_a_query ($attributes) {
 	$attributes = shortcode_atts([
 		'type' => 'post'
 		'cat' => false,
-		'limit' => false
+		'limit' => false,
+		'template' => false
 	], $attributes, 'make_a_query');
 	$wp_query_arr = [];
 	foreach ($attributes as $att => $val) {
 		call_user_func($func_arr[$att], $wp_query_arr, $val);
 	}
-	$args = $wp_query_arr;
-	$wp_query = new WP_Query($args);
+	$wp_query = new WP_Query($wp_query_arr);
+	$template_file = maq_eval_template_path($attributes);
+	$returnString = include $template_file;
 }
 add_shortcode('make_a_query', 'add_sc_make_a_query');
 
-$func_arr['type'] = 'sc_att_type';
-function sc_att_type (&$wp_query_arr, $val) {
+$func_arr['template'] = 'maq_att_template';
+function maq_att_template (&$maq_arr['query'], $val) {
+	if($val) {
+		$maq_arr['template'] = $val;
+	} else if()
+}
+
+$func_arr['type'] = 'maq_att_type';
+function maq_att_type (&$wp_query_arr, $val) {
 	$wp_query_arr['post_type'] = $val;
 }
 
-$func_arr['cat'] = 'sc_att_cat';
-function sc_att_cat (&$wp_query_arr, $val) {
+$func_arr['cat'] = 'maq_att_cat';
+function maq_att_cat (&$wp_query_arr, $val) {
 	if($val) {
 		$wp_query_arr['category_name'] = $val;
 	}
 }
 
-$func_arr['limit'] = 'sc_att_limit';
-function sc_att_limit (&$wp_query_arr, $val) {
+$func_arr['limit'] = 'maq_att_limit';
+function maq_att_limit (&$wp_query_arr, $val) {
 	if($val) {
 		$wp_query_arr['post_count'] = $val . '';
 	}
