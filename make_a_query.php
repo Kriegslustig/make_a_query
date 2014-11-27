@@ -11,8 +11,16 @@ Version: 0.1
 Author URI: http://netzkinder.cc/
 */
 
+// Creates the settings page
+require 'maq_settings.php';
+
 // this array maps attributes to their function
 $func_arr = [];
+
+// The users teplate should be in this dir
+$user_dir = get_option('make_a_query_templates_directory') ?
+	get_option('make_a_query_templates_directory') :
+	'';
 
 // Adding a shortcode to make wordpress queries from posts.
 // [make_a_query type="post" cat="category_slug" limit=5]
@@ -36,9 +44,9 @@ add_shortcode('make_a_query', 'add_sc_make_a_query');
 
 function maq_eval_template_path($attributes) {
 	if($attributes['template']) {
-		return get_template_directory() . '/' . $attributes['template'];
+		return get_template_directory() . $user_dir . '/' . $attributes['template'];
 	} else if($attributes['type']) {
-		return get_template_directory() . '/' . $attributes['type'];
+		return get_template_directory() . $user_dir . $attributes['type'];
 	}
 }
 
