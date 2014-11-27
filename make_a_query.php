@@ -18,7 +18,7 @@ $func_arr = [];
 // [make_a_query type="post" cat="category_slug" limit=5]
 function add_sc_make_a_query ($attributes) {
 	$attributes = shortcode_atts([
-		'type' => 'post'
+		'type' => 'post',
 		'cat' => false,
 		'limit' => false,
 		'template' => false
@@ -28,16 +28,25 @@ function add_sc_make_a_query ($attributes) {
 		call_user_func($func_arr[$att], $wp_query_arr, $val);
 	}
 	$wp_query = new WP_Query($wp_query_arr);
+	// Look for a valid template_file
 	$template_file = maq_eval_template_path($attributes);
 	$returnString = include $template_file;
 }
 add_shortcode('make_a_query', 'add_sc_make_a_query');
 
+function maq_eval_template_path($attributes) {
+	if($attributes['template']) {
+		return get_template_directory() . '/' . $attributes['template'];
+	} else if($attributes['type']) {
+		return get_template_directory() . '/' . $attributes['type'];
+	}
+}
+
 $func_arr['template'] = 'maq_att_template';
-function maq_att_template (&$maq_arr['query'], $val) {
+function maq_att_template (&$wp_query_arr, $val) {
 	if($val) {
 		$maq_arr['template'] = $val;
-	} else if()
+	}
 }
 
 $func_arr['type'] = 'maq_att_type';
