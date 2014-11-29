@@ -74,7 +74,8 @@ function add_sc_make_a_query ($attributes) {
 	$wp_query = new WP_Query($wp_query_arr);
 	// Look for a valid template_file
 	$template_file = maq_eval_template_path($attributes);
-	$returnString = include $template_file;
-	return $returnString;
+	ob_start();
+	include $template_file;
+	return ob_get_clean();
 }
 add_shortcode('make_a_query', 'add_sc_make_a_query');
