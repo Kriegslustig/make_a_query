@@ -24,12 +24,15 @@ function add_sc_make_a_query ($attributes) {
 	// The users teplate should be in this dir
 
 	function maq_eval_template_path($attributes) {
-		$user_dir = get_option('make_a_query_templates_directory');
-		if($attributes['template']) {
+		$user_dir = get_option('make_a_query_templates_directory') ? get_option('make_a_query_templates_directory') : '';
+		if($attributes['template'] && is_file(get_template_directory() . '/' . $user_dir . $attributes['template'])) {
 			return get_template_directory() . '/' . $user_dir . $attributes['template'];
-		} else {
-			return get_template_directory() . '/' . $user_dir . $attributes['type'] . '.php';
 		}
+		$post_type_templ = get_template_directory() . '/' . $user_dir . $attributes['type'] . '.php';
+		if(is_file($post_type_templ)) {
+			return $post_type_templ;
+		}
+		return plugin_dir_path('default-post-template.php');
 	}
 
 	$make_a_query_func_arr['template'] = 'maq_att_template';
