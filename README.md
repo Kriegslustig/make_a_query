@@ -24,7 +24,7 @@ If no template can be found, the default template (which is shown below) will be
 
 Settings
 ========
-Under `Writting` *Make A Query* adds a setting **Template Directory**. It should point to the place where the post-templates are.
+Under `Settings > Writting` *Make A Query* adds a setting **Template Directory**. It should point to the place where the post-templates are.
 
 Post Templates
 ==============
