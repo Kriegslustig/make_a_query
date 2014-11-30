@@ -18,7 +18,7 @@ Usage
 
 **limit**: Limits the number of posts displayed. *Default: 10*
 
-**template**: This must be a php file. *Default: `<themedirectory>/<custom_template_dir/<type>.php`*
+**template**: This must be a php file. *Default: *`<themedirectory>/<custom_template_dir/<type>.php`
 
 If no template can be found, the default template (which is shown below) will be used.
 
