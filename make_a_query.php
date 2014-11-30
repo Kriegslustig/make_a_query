@@ -26,9 +26,9 @@ function add_sc_make_a_query ($attributes) {
 	function maq_eval_template_path($attributes) {
 		$user_dir = get_option('make_a_query_templates_directory');
 		if($attributes['template']) {
-			return get_template_directory() . '/' . $user_dir . '/' . $attributes['template'];
+			return get_template_directory() . '/' . $user_dir . $attributes['template'];
 		} else {
-			return get_template_directory() . '/' . $user_dir . '/' . $attributes['type'] . '.php';
+			return get_template_directory() . '/' . $user_dir . $attributes['type'] . '.php';
 		}
 	}
 
