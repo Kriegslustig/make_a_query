@@ -11,10 +11,15 @@ It's used to open post-templates.
 Usage
 =====
 `[make_a_query type="post" cat="category_slug" limit=5 template="path/to/template.php"]`
+
 **type**: You can define a custom post-type. *Default: "`post`"*
+
 **cat**: This attribute will filter posts by a categoy_slug. You can only use one. *Default: none*
+
 **limit**: Limits the number of posts displayed. *Default: 10*
+
 **template**: This must be a php file. *Default: `<themedirectory>/<custom_template_dir/<type>.php`*
+
 If no template can be found, the default template (which is shown below) will be used.
 
 Settings
