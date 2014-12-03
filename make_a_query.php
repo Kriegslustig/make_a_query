@@ -4,11 +4,13 @@
  * @version 0.1
  */
 /*
-Plugin Name: Make A Query
-Description: A super simple plugin to add a shortcode which queries for posts.
-Author: Luca Schmid
-Version: 0.1
-Author URI: http://netzkinder.cc/
+ * Plugin Name: Make A Query
+ * Description: A super simple plugin to add a shortcode which queries for posts.
+ * Author: Luca Schmid
+ * Version: 0.1
+ * License: Public Domain
+ * Author URI: http://netzkinder.cc/
+ * Plugin URI: https://github.com/Kriegslustig/make_a_query
 */
 
 // Creates the settings page
