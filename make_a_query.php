@@ -30,6 +30,7 @@ function add_sc_make_a_query ($attributes) {
 
   /*
    * this array maps shortcode attributes to their processors
+   * the processor is an anonymous function
    * The processor the handles the attribute
    * Most attributes are integrated into the $wp-query
    */
@@ -58,42 +59,38 @@ function add_sc_make_a_query ($attributes) {
   }
 
   // Process the template attribute
-  $make_a_query_func_arr['template'] = 'maq_att_template';
-  function maq_att_template ($wp_query_arr, $val) {
+  $make_a_query_func_arr['template'] = function ($wp_query_arr, $val) {
     if($val) {
       $maq_arr['template'] = $val;
     }
     return $wp_query_arr;
-  }
+  };
 
   // Process the type attribute
-  $make_a_query_func_arr['type'] = 'maq_att_type';
-  function maq_att_type ($wp_query_arr, $val) {
+  $make_a_query_func_arr['type'] = function ($wp_query_arr, $val) {
     $wp_query_arr['post_type'] = $val;
     return $wp_query_arr;
-  }
+  };
 
   // Process the cat attribute
-  $make_a_query_func_arr['cat'] = 'maq_att_cat';
-  function maq_att_cat ($wp_query_arr, $val) {
+  $make_a_query_func_arr['cat'] = function ($wp_query_arr, $val) {
     if($val) {
       $wp_query_arr['category_name'] = $val;
     }
     return $wp_query_arr;
-  }
+  };
 
   // Process the limit attribute
-  $make_a_query_func_arr['limit'] = 'maq_att_limit';
-  function maq_att_limit ($wp_query_arr, $val) {
+  $make_a_query_func_arr['limit'] = function ($wp_query_arr, $val) {
     if($val) {
       $wp_query_arr['post_count'] = $val . '';
     }
     return $wp_query_arr;
-  }
+  };
 
   $wp_query_arr = [];
   foreach ($attributes as $att => $val) {
-    $wp_query_arr = call_user_func($make_a_query_func_arr[$att], $wp_query_arr, $val);
+    $wp_query_arr = $make_a_query_func_arr[$att]($wp_query_arr, $val);
   }
   $wp_query = new WP_Query($wp_query_arr);
 
