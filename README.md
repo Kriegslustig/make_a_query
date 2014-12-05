@@ -21,6 +21,10 @@ Requirements
 ============
 It uses Output Buffering. It's often disabled by hosters.
 It's used to open post-templates.
+Also anonymous functions are used.
+
+* Anonymous Function
+* Output Buffering
 
 Usage
 =====
